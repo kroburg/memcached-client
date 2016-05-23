@@ -38,7 +38,7 @@ get_lib_path() ->
 init([PoolName, Options]=_Args) ->
     LibDir = case code:lib_dir(mcache) of
                 {error, _} -> "priv/lib";
-                Any -> Any
+                Any -> filename:join(Any, "priv/lib")
             end,
 
     error_logger:info_msg("init memcached_drv: ~s/~s.so~n", [LibDir, ?DRV_NAME]),
