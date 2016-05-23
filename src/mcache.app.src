@@ -14,8 +14,8 @@
                         ]
                 },
                 {expires,
-                    [   {example.foo, {generic, 300}},
-                        {example.bar, {generic, {10, hours}}}
+                    [   {'example.foo', {generic, 300}},
+                        {'example.bar', {generic, {10, hours}}}
                     ]
                 }
             ]

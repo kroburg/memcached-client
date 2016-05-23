@@ -14,21 +14,21 @@ test_get_server(P, R) ->
 
 test_get(P, R, M) ->
     F = fun(I) ->
-            M:get(mcache.test, "key:"++integer_to_list(I))
+            M:get("mcache.test", "key:"++integer_to_list(I))
         end,
     stresstest:start("test_get", P, R, F).
 
 test_set(P, R, M, Size) ->
     S = Size*8,
     F = fun(I) ->
-            M:set(mcache.test, "key:"++integer_to_list(I), <<I:S>>, raw, infinity)
+            M:set("mcache.test", "key:"++integer_to_list(I), <<I:S>>, raw, infinity)
         end,
     stresstest:start("test_set", P, R, F).
 
 
 test_mget(P, R, M) ->
     F = fun(I) ->
-            L = M:mget(mcache.test, ["key:"++integer_to_list(V) || V <- lists:seq(I+1, I+20)]),
+            L = M:mget("mcache.test", ["key:"++integer_to_list(V) || V <- lists:seq(I+1, I+20)]),
             if length(L) =/= 20 ->
                     erlang:error({wrong_result, I, length(L)});
             true ->
